@@ -65,31 +65,9 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *BrightnessUp[] = { "xbacklight", "-inc", "1", NULL };
-static const char *BrightnessDown[] = { "xbacklight", "-dec", "1", NULL };
-static const char *AudioUp[] = { "pamixer", "-i", "2", NULL };
-static const char *AudioDown[] = { "pamixer", "-d","2",NULL };
-static const char *AudioMute[] = { "pamixer", "-t", NULL };
-static const char *AudioNext[] = { "playerctl", "next", NULL};
-static const char *AudioPrev[] = { "playerctl", "previous", NULL};
-static const char *AudioToggle[] = { "playerctl", "play-pause", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-
-	{ 0,		XF86XK_AudioNext,	   spawn,	{.v = AudioNext } },
-	{ 0,		XF86XK_AudioPrev,	   spawn,	{.v = AudioPrev } },
-	{ 0,		XF86XK_AudioPlay,	   spawn,	{.v = AudioToggle } },
-
-	{ 0,		XF86XK_AudioRaiseVolume,   spawn,       {.v = AudioUp } },
-	{ 0,		XF86XK_AudioLowerVolume,   spawn,       {.v = AudioDown } },
-	{ 0,		XF86XK_AudioMute,          spawn,       {.v = AudioMute } },
-
-	{ 0,		XF86XK_MonBrightnessUp,    spawn,       {.v = BrightnessUp } },
-	{ 0,		XF86XK_MonBrightnessDown,  spawn,       {.v = BrightnessDown } },
-
-    { 0,		            XK_Print,   spawn,		SHCMD("maim ~/Pictures/pic-full-\"$(date '+%y%m%d-%H%M-%S').png\"") },
-    { ShiftMask,			XK_Print,	spawn,		SHCMD("maimpick") },
 
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },

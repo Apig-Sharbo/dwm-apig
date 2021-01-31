@@ -7,7 +7,7 @@ static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Noto Sans Mono:pixelsize=13:antialias=true:autohint=true", "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true" };
+static const char *fonts[]          = { "Noto Sans Mono:pixelsize=13:antialias=true:autohint=true", /* "Symbola:pixelsize=13:antialias=true:autohint=true", */ "Noto Color Emoji:pixelsize=13:antialias=true:autohint=true" };
 static const char dmenufont[]       = "Noto Sans Mono:pixelsize=13:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";

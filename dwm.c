@@ -1326,8 +1326,14 @@ resizeclient(Client *c, int x, int y, int w, int h)
 	wc.border_width = c->bw;
 	if (((nexttiled(c->mon->clients) == c && !nexttiled(c->next))
 	    || &monocle == c->mon->lt[c->mon->sellt]->arrange)
-	    && !c->isfullscreen && !c->isfloating
-	    && NULL != c->mon->lt[c->mon->sellt]->arrange) {
+	    && !c->isfloating // removing the border should only be done if the window is not floating.
+        /* Check for isfullscreen was removed because it interfered with fakefullscreen patch.
+         * Steps to replicate:
+         * Put a single browser windows in a tag that is in a mode other than floating mode.
+         * Fullscreen a youtube video, and switch to different tag, then come back.
+         * This results in the fullscreen video having a border when it gets the focus event.*/
+	    && NULL != c->mon->lt[c->mon->sellt]->arrange // This effectively adds a border when a window is resized and doesn't have a border.
+    ) {
 		c->w = wc.width += c->bw * 2;
 		c->h = wc.height += c->bw * 2;
 		wc.border_width = 0;

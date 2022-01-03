@@ -2,7 +2,7 @@ diff -up a/config.def.h b/config.def.h
 --- a/config.def.h	2020-04-17 13:37:50.926942626 +0200
 +++ b/config.def.h	2020-04-25 15:24:56.722215722 +0200
 @@ -2,6 +2,7 @@
- 
+
  /* appearance */
  static const unsigned int borderpx  = 1;        /* border pixel of windows */
 +static const unsigned int gappx     = 5;        /* gaps between windows */
@@ -26,7 +26,7 @@ diff -up a/dwm.c b/dwm.c
  	int by;               /* bar geometry */
  	int mx, my, mw, mh;   /* screen size */
  	int wx, wy, ww, wh;   /* window area  */
-+	unsigend int gappx;   /* gaps between windows */
++	unsigned int gappx;   /* gaps between windows */
  	unsigned int seltags;
  	unsigned int sellt;
  	unsigned int tagset[2];
@@ -62,7 +62,7 @@ diff -up a/dwm.c b/dwm.c
  	XSync(dpy, False);
 @@ -1498,6 +1508,16 @@ setfullscreen(Client *c, int fullscreen)
  }
- 
+
  void
 +setgaps(const Arg *arg)
 +{
@@ -84,7 +84,7 @@ diff -up a/dwm.c b/dwm.c
 -	unsigned int i, n, h, mw, my, ty;
 +	unsigned int i, n, h, mw, my, ty, ns;
  	Client *c;
- 
+
  	for (n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
  	if (n == 0)
  		return;
@@ -93,7 +93,7 @@ diff -up a/dwm.c b/dwm.c
 +		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, 0);
 +		return;
 +	}
- 
+
 -	if (n > m->nmaster)
 +	if (n > m->nmaster){
  		mw = m->nmaster ? m->ww * m->mfact : 0;
